@@ -1,7 +1,7 @@
 -- Create the database
 -- Note: Creation of the database cannot be included in a transactional SQL script.
 -- You should run this command separately in your PostgreSQL management tool.
-CREATE DATABASE production;
+-- CREATE DATABASE production;
 
 -- Creating the Users table
 CREATE TABLE IF NOT EXISTS Users (

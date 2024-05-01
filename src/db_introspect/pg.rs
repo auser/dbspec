@@ -87,25 +87,9 @@ mod tests {
         assert!(tables.is_ok(), "Failed to introspect tables");
         assert!(tables.unwrap().len() > 0, "No tables found");
     }
-    pub const TEST_POSTGRES_URL: &str = "postgresql://postgres:postgres@localhost:5432/production";
-
-    pub async fn setup_production_database() {
-        std::env::set_var(
-            "DATABASE_URL",
-            "postgresql://postgres:postgres@localhost:5432/postgres",
-        );
-        let pool = PgPool::connect("postgresql://postgres:postgres@localhost:5432/postgres")
-            .await
-            .unwrap();
-
-        let stmts = sqlx::query_file!(".devcontainer/seeds/postgres.sql", 1i32)
-            .execute(&mut psql_pool().await)
-            .await
-            .unwrap();
-    }
+    pub const TEST_POSTGRES_URL: &str = "postgresql://postgres:postgres@localhost:5433/production";
 
     pub async fn psql_pool() -> PgPool {
-        setup_production_database().await;
         PgPool::connect(TEST_POSTGRES_URL).await.unwrap()
     }
 }
