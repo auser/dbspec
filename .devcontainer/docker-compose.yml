@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  pg:
+    image: postgres:16
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    volumes:
+      - dbspec-postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+
+  mysql:
+    image: mysql:8
+    restart: unless-stopped
+    volumes:
+      - dbspec-mysql-data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mysql
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+
+volumes:
+  dbspec-postgres-data:
+  dbspec-mysql-data:
