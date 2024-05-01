@@ -75,4 +75,12 @@ async fn introspect_mysql_table(
     Ok(res)
 }
 
-fn build_table_column_def() {}
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    pub const TEST_MYSQL_URI: &str = "mysql://root:password@localhost:3306/production";
+    pub async fn mysql_pool() -> MySqlPool {
+        MySqlPool::connect(TEST_MYSQL_URI).await.unwrap()
+    }
+}
