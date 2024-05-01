@@ -1,4 +1,4 @@
-extern crate fakeit;
+#![cfg(feature = "fake")]
 use chrono::DateTime;
 use chrono::Utc;
 use fakeit::person::gender;
